@@ -2,6 +2,7 @@ package com.example.customvalidator;
 
 import com.example.customvalidator.model.DomainModelClass1;
 import com.example.customvalidator.model.DomainModelClass2;
+import com.example.customvalidator.model.БольшойСложныйОбъект;
 import com.example.customvalidator.service.api.CustomValidationFactory;
 import com.example.customvalidator.service.api.CustomValidationService;
 import com.example.customvalidator.service.impl.validators.DomainModelClass1ValidatorImpl;
@@ -40,6 +41,19 @@ public class CustomValidatorApplication {
         System.out.println("Model 1 after default values set: " + model1);
         System.out.println("Model 2 after default values set: " + model2);
 
+
+        // большой сложный объект example
+
+        БольшойСложныйОбъект большойСложныйОбъект = new БольшойСложныйОбъект();
+        большойСложныйОбъект.setЗависимоеПоле1("лалала");
+        большойСложныйОбъект.setЗависимоеПоле2("бебебе");
+        БольшойСложныйОбъект большойСложныйОбъектСДеволтнымиЗначениями = new БольшойСложныйОбъект();
+
+        CustomValidationService<БольшойСложныйОбъект> валидаторБольшогоОбъекта = customValidationFactory.get(БольшойСложныйОбъект.class);
+
+        валидаторБольшогоОбъекта.validate(большойСложныйОбъект,большойСложныйОбъектСДеволтнымиЗначениями);
+
+        System.out.println("Большой объект после валидации кучи зависимых полей: " + большойСложныйОбъект);
 
     }
 
